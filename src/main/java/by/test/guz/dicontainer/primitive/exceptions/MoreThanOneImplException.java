@@ -1,4 +1,4 @@
-package by.test.guz.dicontainer.primitive;
+package by.test.guz.dicontainer.primitive.exceptions;
 
 public class MoreThanOneImplException extends RuntimeException {
 

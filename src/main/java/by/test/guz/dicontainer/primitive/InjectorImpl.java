@@ -1,5 +1,8 @@
 package by.test.guz.dicontainer.primitive;
 
+import by.test.guz.dicontainer.primitive.exceptions.BindingNotFoundException;
+import by.test.guz.dicontainer.primitive.exceptions.MoreThanOneImplException;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

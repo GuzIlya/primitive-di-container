@@ -13,7 +13,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a8d75f2-8ce6-417a-a1d5-3d56544c76ba" name="Default Changelist" comment="Initial commit" />
+    <list default="true" id="5a8d75f2-8ce6-417a-a1d5-3d56544c76ba" name="Default Changelist" comment="Change gitignore">
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/test/guz/dicontainer/primitive/BindingNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/test/guz/dicontainer/primitive/exceptions/BindingNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/test/guz/dicontainer/primitive/ConstructorNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/test/guz/dicontainer/primitive/exceptions/ConstructorNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/test/guz/dicontainer/primitive/InjectorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/test/guz/dicontainer/primitive/InjectorImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/test/guz/dicontainer/primitive/MoreThanOneImplException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/test/guz/dicontainer/primitive/exceptions/MoreThanOneImplException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/test/guz/dicontainer/primitive/ObjectFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/test/guz/dicontainer/primitive/ObjectFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/test/guz/dicontainer/primitive/TooManyConstructorsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/test/guz/dicontainer/primitive/exceptions/TooManyConstructorsException.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -61,6 +68,9 @@
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="by.test.guz.dicontainer.primitive" />
     </key>
@@ -71,10 +81,23 @@
       <module name="Primitive DI-container" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="by.test.guz.dicontainer.primitive.*" />
+          <option name="PATTERN" value="by.test.guz.dicontainer.primitive.exceptions.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -94,7 +117,7 @@
       <option name="presentableId" value="Default" />
       <updated>1614060928749</updated>
       <workItem from="1614060930645" duration="16986000" />
-      <workItem from="1614087372279" duration="304000" />
+      <workItem from="1614087372279" duration="651000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1614087510295</created>
@@ -103,7 +126,21 @@
       <option name="project" value="LOCAL" />
       <updated>1614087510295</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add gitignore">
+      <created>1614087755165</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1614087755165</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Change gitignore">
+      <created>1614087803979</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1614087803979</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -122,7 +159,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
+    <MESSAGE value="Add gitignore" />
+    <MESSAGE value="Change gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change gitignore" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2363" y="131" width="1024" height="852" key="#Project_Structure" timestamp="1614061385550">

@@ -23,16 +23,32 @@ class InjectorTest {
 
     @Test
     void testGetProvider_ValidBindingBefore_ShouldPass() {
-        injector.bind(EventDao.class, EventDaoImpl.class);
-        Provider<EventDao> provider = injector.getProvider(EventDao.class);
+        injector.bind(Sample.class, SingletonSample.class);
+        Provider<Sample> provider = injector.getProvider(Sample.class);
         assertNotNull(provider);
         assertNotNull(provider.getInstance());
-        assertSame(EventDaoImpl.class, provider.getInstance().getClass());
+        assertSame(SingletonSample.class, provider.getInstance().getClass());
     }
 
     @Test
     void testGetProvider_NoBindingBefore_ShouldThrowBindingNotFoundException() {
-        assertThrows(BindingNotFoundException.class, () -> injector.getProvider(EventDao.class));
+        assertThrows(BindingNotFoundException.class, () -> injector.getProvider(Sample.class));
+    }
+
+    @Test
+    void testGetProvider_NoBindingForConstructorArguments_ShouldThrowBindingNotFoundException() {
+        injector.bind(Sample.class, NoBindingForConstructorArgumentSample.class);
+        assertThrows(BindingNotFoundException.class, () -> injector.getProvider(NoBindingForConstructorArgumentSample.class));
+    }
+
+    @Test
+    void testGetProvider_ValidBindingForConstructorArguments_ShouldPass() {
+        injector.bind(Sample.class, NoBindingForConstructorArgumentSample.class);
+        injector.bind(SecondarySample.class, SecondarySampleImpl.class);
+        Provider<Sample> provider = injector.getProvider(Sample.class);
+        assertNotNull(provider);
+        assertNotNull(provider.getInstance());
+        assertSame(NoBindingForConstructorArgumentSample.class, provider.getInstance().getClass());
     }
 
     @Test
@@ -67,7 +83,6 @@ class InjectorTest {
 
     @Test
     void testGetProvider_ForClassWithoutBinding_ShouldReturnNull(){
-        injector.bind(Sample.class, NotBeanAnnotatedSample.class);
         Provider<NotBeanAnnotatedSample> provider = injector.getProvider(NotBeanAnnotatedSample.class);
         assertNull(provider);
     }

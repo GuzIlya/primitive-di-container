@@ -1,5 +1,6 @@
 package by.test.guz.dicontainer.primitive;
 
+import by.test.guz.dicontainer.primitive.annotations.Inject;
 import by.test.guz.dicontainer.primitive.exceptions.ConstructorNotFoundException;
 import by.test.guz.dicontainer.primitive.exceptions.TooManyConstructorsException;
 
@@ -17,11 +18,11 @@ public class ObjectFactory {
     }
 
     public <T> T createObject(Class<T> implClass) {
+
         Constructor<?> target = null;
+        Constructor<?>[] cons = implClass.getConstructors();
 
-        Constructor<?>[] declaredConstructors = implClass.getDeclaredConstructors();
-
-        for (Constructor<?> constructor : declaredConstructors) {
+        for (Constructor<?> constructor : cons) {
             if (constructor.isAnnotationPresent(Inject.class))
                 if (target == null) {
                     target = constructor;
@@ -36,19 +37,17 @@ public class ObjectFactory {
             }
         }
 
-        T t = null;
+
 
         List<Object> parameterObjects = new ArrayList<>();
         for (Class<?> parameterType : target.getParameterTypes()) {
             parameterObjects.add(injector.getProvider(parameterType).getInstance());
         }
 
-        try {
-            if (parameterObjects.isEmpty())
-                t = (T) target.newInstance();
-            else
-                t = (T) target.newInstance(parameterObjects.toArray());
+        T t = null;
 
+        try {
+            t = (T) target.newInstance(parameterObjects.toArray());
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }

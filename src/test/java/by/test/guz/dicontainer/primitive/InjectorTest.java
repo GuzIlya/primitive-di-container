@@ -1,8 +1,7 @@
 package by.test.guz.dicontainer.primitive;
 
 import by.test.guz.dicontainer.primitive.exceptions.BindingNotFoundException;
-import by.test.guz.dicontainer.primitive.exceptions.ConstructorNotFoundException;
-import by.test.guz.dicontainer.primitive.exceptions.TooManyConstructorsException;
+import by.test.guz.dicontainer.primitive.exceptions.MoreThanOneImplException;
 import by.test.guz.dicontainer.primitive.samples.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -61,19 +60,7 @@ class InjectorTest {
     }
 
     @Test
-    void testGetProvider_NoInjectNoDefaultConstructor_ShouldThrowConstructorNotFoundException() {
-        injector.bind(Sample.class, NoInjectNoDefaultConstructorSample.class);
-        assertThrows(ConstructorNotFoundException.class, () -> injector.getProvider(Sample.class));
-    }
-
-    @Test
-    void testGetProvider_ManyInjects_ShouldThrowTooManyConstructorsException() {
-        injector.bind(Sample.class, ManyInjectsSample.class);
-        assertThrows(TooManyConstructorsException.class, () -> injector.getProvider(Sample.class));
-    }
-
-    @Test
-    void testGetProvider_ForClassWithBinding_ShouldPass(){
+    void testGetProvider_ForClassWithBinding_ShouldPass() {
         injector.bind(Sample.class, PrototypeSample.class);
         Provider<PrototypeSample> provider = injector.getProvider(PrototypeSample.class);
         assertNotNull(provider);
@@ -82,13 +69,13 @@ class InjectorTest {
     }
 
     @Test
-    void testGetProvider_ForClassWithoutBinding_ShouldReturnNull(){
+    void testGetProvider_ForClassWithoutBinding_ShouldReturnNull() {
         Provider<NotBeanAnnotatedSample> provider = injector.getProvider(NotBeanAnnotatedSample.class);
         assertNull(provider);
     }
 
     @Test
-    void testBindSingleton_AfterCompareReturnOfGetProviderCallsForEquality_ShouldPass(){
+    void testBindSingleton_AfterCompareReturnOfGetProviderCallsForEquality_ShouldPass() {
         injector.bindSingleton(Sample.class, SingletonSample.class);
         Provider<Sample> provider1 = injector.getProvider(Sample.class);
         Provider<Sample> provider2 = injector.getProvider(Sample.class);
@@ -96,10 +83,16 @@ class InjectorTest {
     }
 
     @Test
-    void testBind_AfterCompareReturnOfGetProviderCallsForInequality_ShouldPass(){
+    void testBind_AfterCompareReturnOfGetProviderCallsForInequality_ShouldPass() {
         injector.bind(Sample.class, PrototypeSample.class);
         Provider<Sample> provider1 = injector.getProvider(Sample.class);
         Provider<Sample> provider2 = injector.getProvider(Sample.class);
         assertNotEquals(provider1, provider2);
+    }
+
+    @Test
+    void testBind_BindTwoImplForOneInterface_MoreThanOneImplException() {
+        injector.bind(Sample.class, PrototypeSample.class);
+        assertThrows(MoreThanOneImplException.class, () -> injector.bind(Sample.class, SingletonSample.class));
     }
 }

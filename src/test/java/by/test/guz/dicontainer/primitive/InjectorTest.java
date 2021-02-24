@@ -38,7 +38,7 @@ class InjectorTest {
     @Test
     void testGetProvider_NoBindingForConstructorArguments_ShouldThrowBindingNotFoundException() {
         injector.bind(Sample.class, NoBindingForConstructorArgumentSample.class);
-        assertThrows(BindingNotFoundException.class, () -> injector.getProvider(NoBindingForConstructorArgumentSample.class));
+        assertThrows(BindingNotFoundException.class, () -> injector.getProvider(Sample.class));
     }
 
     @Test
@@ -74,11 +74,11 @@ class InjectorTest {
 
     @Test
     void testGetProvider_ForClassWithBinding_ShouldPass(){
-        injector.bind(Sample.class, SingletonSample.class);
-        Provider<SingletonSample> provider = injector.getProvider(SingletonSample.class);
+        injector.bind(Sample.class, PrototypeSample.class);
+        Provider<PrototypeSample> provider = injector.getProvider(PrototypeSample.class);
         assertNotNull(provider);
         assertNotNull(provider.getInstance());
-        assertSame(SingletonSample.class, provider.getInstance().getClass());
+        assertSame(PrototypeSample.class, provider.getInstance().getClass());
     }
 
     @Test

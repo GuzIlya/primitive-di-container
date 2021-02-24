@@ -1,5 +1,7 @@
 package by.test.guz.dicontainer.primitive;
 
+import by.test.guz.dicontainer.primitive.annotations.Bean;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;

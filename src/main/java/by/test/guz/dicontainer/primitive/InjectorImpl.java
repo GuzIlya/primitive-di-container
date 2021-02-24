@@ -1,5 +1,6 @@
 package by.test.guz.dicontainer.primitive;
 
+import by.test.guz.dicontainer.primitive.annotations.Bean;
 import by.test.guz.dicontainer.primitive.exceptions.BindingNotFoundException;
 import by.test.guz.dicontainer.primitive.exceptions.MoreThanOneImplException;
 
@@ -26,18 +27,22 @@ public class InjectorImpl implements Injector {
             if (beansBinded.containsKey(type)) {
                 implClass = beansBinded.get(type).getBeanType();
             } else throw new BindingNotFoundException("Bean for interface " + type + " not found.");
+        } else if (!type.isAnnotationPresent(Bean.class)) {
+            return null;
         }
 
         T t = factory.createObject(implClass);
 
         Provider<T> provider = new ProviderImpl(t);
 
-        if (beansBinded.containsKey(type) && beansBinded.get(type).isSingleton()) {
-            cache.put(type, provider);
+        if (!cache.containsKey(type)) {
+            synchronized (this) {
+                if (!cache.containsKey(type) && beansBinded.containsKey(type) && beansBinded.get(type).isSingleton())
+                    cache.put(type, provider);
+            }
         }
 
         return provider;
-
     }
 
     @Override

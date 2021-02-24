@@ -6,7 +6,7 @@ public class ProviderImpl<T> implements Provider<T> {
         this.instance = instance;
     }
 
-    private T instance;
+    private final T instance;
 
     @Override
     public T getInstance() {
